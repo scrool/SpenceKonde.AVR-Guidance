@@ -99,8 +99,8 @@ internal resistor in adapter: 2.2k >= Ra
   Tx---/\/\/\---Tx |-------|<|---'          .--------| Gnd    470 ohm (100 ~ 1k)
     resistor    Vcc|---------------------------------| Vcc
   typ 1-2k      CTS|                     .`          |__________________
-                Gnd|--------------------'             If you make a 3-pin connector, use this pinout
---------------------
+                Gnd|--------------------'
+--------------------                                 If you make a 3-pin connector, use this pinout
 ```
 
 or
@@ -126,8 +126,8 @@ Also works great, convenient if still using jtag2updi without resistor built int
   Tx---/\/\/\---Tx |-------|<|---'          .--------| Gnd     < 2.2k
     resistor    Vcc|---------------------------------| Vcc
   typ 1-2k      CTS|                     .`          |__________________
-                Gnd|--------------------'           Series resistor between header and chip UPDI pin on target PCB
---------------------                                I use 470 ohm resistors.
+                Gnd|--------------------'            Series resistor between header and chip UPDI pin on target PCB
+--------------------                                 I use 470 ohm resistors.
 ```
 
 Yes internal resistor on adapter
@@ -159,9 +159,9 @@ Yes resistor on target >= 100 ohms and not more than a few k.
  No resistor?   Rx |--------------,------------------| UPDI----\/\/\/------>
   Are you sure? Tx |----|<|------`          .--------| Gnd     > 100
  This is rare!  Vcc|---------------------------------| Vcc     < 2.2k
-                CTS|                     .`          |__________________    Resistor of around a few hundred to a few k
+                CTS|                     .`          |__________________
                 Gnd|--------------------'
---------------------
+--------------------                                 Resistor of around a few hundred to a few k
 ```
 
 No resistor on target OR adapter:
@@ -228,8 +228,8 @@ The resistor (if any) in serial adapter, and the one you add should total 4.7k.
                 DTR|                       ,--------------------------.
     internal    Rx |--------------,-------'          | UPDI----\/\/\/- *--->
   Tx---/\/\/\---Tx |--/\/\/\/\---`          .--------| Gnd       >470
-    resistor    Vcc|---------------------------------| Vcc
-  typ 1-2k      CTS|                     .`          |__________________     resistor of more than around  470 ohms - must be bypassed, replaced, or shorted.
+    resistor    Vcc|---------------------------------| Vcc        \ resistor of more than around  470 ohms - must be bypassed, replaced, or shorted.
+  typ 1-2k      CTS|                     .`          |__________________
 or no resistor  Gnd|--------------------'
 --------------------
 ```
