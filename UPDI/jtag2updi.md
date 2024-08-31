@@ -84,10 +84,12 @@ Some tinyAVR and other UPDI-using-part breakout boards have an on-board resistor
 ### USB Serial Adapter
 
 With internal 1-2k resistor on TX
+
 This is the case in 90% of USB serial adapters.
 
 
 Ideal:
+
 internal resistor in adapter: 2.2k >= Ra
 
 ```text
@@ -129,7 +131,9 @@ Also works great, convenient if still using jtag2updi without resistor built int
 ```
 
 Yes internal resistor on adapter
+
 Yes resistor on target: several k or more:
+
 This will often by 4.7k: it must be bypassed, replaced with a smaller one or shorted out.
 
 
