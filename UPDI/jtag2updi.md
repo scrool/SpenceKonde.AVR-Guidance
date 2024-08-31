@@ -81,8 +81,8 @@ Some tinyAVR and other UPDI-using-part breakout boards have an on-board resistor
 * Rx of adapter to UPDI pin of target. A small resistor (under 1k - like the 470 ohm one we generally use) in series with this on the target board is fine.
 
 
-```text
-USB Serial Adapter
+### USB Serial Adapter
+
 With internal 1-2k resistor on TX
 This is the case in 90% of USB serial adapters.
 
@@ -90,6 +90,7 @@ This is the case in 90% of USB serial adapters.
 Ideal:
 internal resistor in adapter: 2.2k >= Ra
 
+```text
 --------------------                                 To Target device
                 DTR|                                  __________________
     internal    Rx |--------------,------------------| UPDI---\/\/---------->
@@ -98,9 +99,11 @@ internal resistor in adapter: 2.2k >= Ra
   typ 1-2k      CTS|                     .`          |__________________
                 Gnd|--------------------'             If you make a 3-pin connector, use this pinout
 --------------------
+```
 
 or
 
+```text
 --------------------                                 To Target device
                 DTR|                                  __________________
     internal    Rx |--------------,------------------| UPDI----------------->
@@ -109,11 +112,12 @@ or
   typ 1-2k      CTS|                     .`          |__________________
                 Gnd|--------------------'
 --------------------
-
+```
 
 
 Also works great, convenient if still using jtag2updi without resistor built into it. Resistors should sum to less than 4.7k, preferably much less
 
+```text
 --------------------                                   To Target device
                 DTR|                                  __________________
     internal    Rx |--------------,------------------| UPDI----\/\/\/---->
@@ -122,12 +126,14 @@ Also works great, convenient if still using jtag2updi without resistor built int
   typ 1-2k      CTS|                     .`          |__________________
                 Gnd|--------------------'           Series resistor between header and chip UPDI pin on target PCB
 --------------------                                I use 470 ohm resistors.
+```
 
 Yes internal resistor on adapter
 Yes resistor on target: several k or more:
 This will often by 4.7k: it must be bypassed, replaced with a smaller one or shorted out.
 
 
+```text
 --------------------                                   To Target device
                 DTR|               ,----------------------------------.
     internal    Rx |--------------/                  | UPDI----\/\/\/--*-
@@ -136,12 +142,14 @@ This will often by 4.7k: it must be bypassed, replaced with a smaller one or sho
   typ 1-2k      CTS|                     .'          |__________________
                 Gnd|--------------------'
 --------------------
+```
 
 
 
 No internal resistor on adapter.
 Yes resistor on target >= 100 ohms and not more than a few k.
 
+```text
 --------------------                                   To Target device
                 DTR|                                  __________________
  No resistor?   Rx |--------------,------------------| UPDI----\/\/\/------>
@@ -150,7 +158,7 @@ Yes resistor on target >= 100 ohms and not more than a few k.
                 CTS|                     .`          |__________________    Resistor of around a few hundred to a few k
                 Gnd|--------------------'
 --------------------
-
+```
 
 No resistor on target OR adapter:
 
@@ -160,6 +168,7 @@ the first and second positions, with nothing between Rx and target UPDI, are sli
 Value of resistor should be a few hundred ohms, I'd default 470.
 
 No internal resistor
+```text
 --------------------                                   To Target device
                 DTR|                                  __________________
  No resistor    Rx |---------------------,--/\/\-----| UPDI---------------->
@@ -168,6 +177,7 @@ No internal resistor
                 CTS|                          .`     |__________________
                 Gnd|-------------------------'
 --------------------
+```
 
 
 Resistor-based schemes - these have a narrower window of parameters under which they work reliably.
@@ -181,6 +191,7 @@ However, if your choice is between a resistor and a silicon diode, as opposed to
 
 The PyUPDI classic:
 
+```text
                          4.7k resistor
 No internal resistor
 --------------------                                   To Target device
@@ -191,9 +202,11 @@ No internal resistor
                 CTS|                     .`          |__________________
                 Gnd|--------------------'
 --------------------
+```
 
 Very much like the classic, except for the possibility of a resistor on the target. Must be 470 or under on the target.
 
+```
 Resistance should sum to 4.7k
 --------------------                                   To Target device
                 DTR|                                  __________________
@@ -203,7 +216,7 @@ Resistance should sum to 4.7k
   typ 1-2k      CTS|                     .`          |__________________
                 Gnd|--------------------'
 --------------------
-
+```
 
 If the resistor on the target is much more than 470 ohms, you're going to want to bypass it. Alternately,
 it may be easier to replace it with a 0 ohm resistor or bridge it with a piece of wire or even
@@ -211,6 +224,7 @@ just a blob of solder, and do the classic pyupdi. Note that using a diode will w
 
 
 The resistor (if any) in serial adapter, and the one you add should total 4.7k.
+```text
 --------------------                                   To Target device
                 DTR|                       ,--------------------------.
     internal    Rx |--------------,-------'          | UPDI----\/\/\/- *--->
@@ -219,10 +233,12 @@ The resistor (if any) in serial adapter, and the one you add should total 4.7k.
   typ 1-2k      CTS|                     .`          |__________________     resistor of more than around  470 ohms - must be bypassed, replaced, or shorted.
 or no resistor  Gnd|--------------------'
 --------------------
+```
 
 If there's no resistor in the serial adapter and the target happens to have a 4.7k resistor, you can do it without
 any extra components, though you've got 4 wires involved instead of 3:
 
+```text
 --------------------                                   To Target device
                 DTR|              .-----------------------------------.
  No resistor?   Rx |-------------'      ,------------| UPDI----\/\/\/--*---->
@@ -231,8 +247,6 @@ any extra components, though you've got 4 wires involved instead of 3:
  OR resistor    CTS|                      .'         |__________________
   bypassed      Gnd|---------------------'       Excessively - but conveniently - sized resistor.
 --------------------                        These were (incorrectly) popularized for the first few years of UPDI
-
-
 
 ```
 
