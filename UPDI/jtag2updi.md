@@ -162,8 +162,7 @@ Yes resistor on target >= 100 ohms and not more than a few k.
 
 No resistor on target OR adapter:
 
-Include A resistor in ONE of the three places shown below, whichever is easier to wire in,
-the first and second positions, with nothing between Rx and target UPDI, are slightly preferable
+Include A resistor in ONE of the three places shown below, whichever is easier to wire in, the first and second positions, with nothing between Rx and target UPDI, are slightly preferable
 
 Value of resistor should be a few hundred ohms, I'd default 470.
 
@@ -180,9 +179,7 @@ No internal resistor
 ```
 
 
-Resistor-based schemes - these have a narrower window of parameters under which they work reliably.
-If you look at the UPDI line on a 'scope while it is malfunctioning, you will see that sometimes
-the voltage is not going all the way down to ground when one side tries to assert it.
+Resistor-based schemes - these have a narrower window of parameters under which they work reliably. If you look at the UPDI line on a 'scope while it is malfunctioning, you will see that sometimes the voltage is not going all the way down to ground when one side tries to assert it.
 
 They are not recommended unless there is something keeping you from using a diode configuration.
 
@@ -218,9 +215,7 @@ Resistance should sum to 4.7k
 --------------------
 ```
 
-If the resistor on the target is much more than 470 ohms, you're going to want to bypass it. Alternately,
-it may be easier to replace it with a 0 ohm resistor or bridge it with a piece of wire or even
-just a blob of solder, and do the classic pyupdi. Note that using a diode will work with resistances on the target that are too much for it to work using a resistor.
+If the resistor on the target is much more than 470 ohms, you're going to want to bypass it. Alternately, it may be easier to replace it with a 0 ohm resistor or bridge it with a piece of wire or even just a blob of solder, and do the classic pyupdi. Note that using a diode will work with resistances on the target that are too much for it to work using a resistor.
 
 
 The resistor (if any) in serial adapter, and the one you add should total 4.7k.
@@ -235,8 +230,7 @@ or no resistor  Gnd|--------------------'
 --------------------
 ```
 
-If there's no resistor in the serial adapter and the target happens to have a 4.7k resistor, you can do it without
-any extra components, though you've got 4 wires involved instead of 3:
+If there's no resistor in the serial adapter and the target happens to have a 4.7k resistor, you can do it without any extra components, though you've got 4 wires involved instead of 3:
 
 ```text
 --------------------                                   To Target device
